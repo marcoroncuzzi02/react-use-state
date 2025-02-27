@@ -4,19 +4,24 @@ import { useState } from "react"
 const Main = () => {
 
     const [showText,setShowText] = useState('')
+    const [active,setActive] = useState()
 
     return(
         <main >
-            <div className="container d-flex flex-column gap-2 ">
+            <div className="container d-flex gap-2 ">
             {languages.map( (element) =>{
                 return(
             
                     <div className="container row buttons">
                         <button 
-                            className=" btn btn-primary" 
+                            className={active === element.id ? "btn btn-warning" : "btn btn-primary"}
                             key={element.id}
-                            onClick={() =>{setShowText(element.description)}}>
-                                {element.title}
+                            onClick={() =>{
+                                setShowText(element.description), 
+                                setActive(element.id)
+                            }}
+                        >
+                            {element.title}
                         </button>
                     </div>
                     
